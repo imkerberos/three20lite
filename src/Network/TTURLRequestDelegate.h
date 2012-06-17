@@ -20,7 +20,15 @@
 
 @protocol TTURLRequestDelegate <NSObject>
 @optional
-
+/**
+ *The request has determined that it must change URLs to continue.
+ * sendRequest is the new request object to use.
+ * The default is to return sendRequest. If you would like to change the redirection,
+ * create a new NSURLRequest object and return that instead.
+ */
+- (NSURLRequest*)request: (TTURLRequest*)request
+         willSendRequest: (NSURLRequest*)sendRequest
+         redirectResponse: (NSURLResponse*)redirectResponse;
 /**
  * The request has begun loading.
  *
